@@ -1,0 +1,7 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ir.metrix:cordova:1.1.3'
+}
