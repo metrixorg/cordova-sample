@@ -22,8 +22,8 @@ public class MetrixCordova extends CordovaPlugin {
     private CallbackContext attributionCallbackContext;
     private CallbackContext deeplinkCallbackContext;
     private CallbackContext userIdCallbackContext;
-    private CallbackContext getSessionNumCallbackContext;
-    private CallbackContext getSessionIdCallbackContext;
+    private CallbackContext sessionNumberCallbackContext;
+    private CallbackContext sessionIdCallbackContext;
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -34,8 +34,8 @@ public class MetrixCordova extends CordovaPlugin {
             String token = args.getString(0);
             ir.metrix.Metrix.setPushToken(token);
         } else if (action.equals(COMMAND_GET_SESSION_NUMBER)) {
-            getSessionNumCallbackContext = callbackContext;
-            getSessionNum();
+            sessionNumberCallbackContext = callbackContext;
+            setSessionNumberListener();
         } else if (action.equals(COMMAND_TRACK_SIMPLE_EVENT)) {
             String slug = args.getString(0);
             ir.metrix.Metrix.newEvent(slug);
@@ -54,8 +54,8 @@ public class MetrixCordova extends CordovaPlugin {
             userIdCallbackContext = callbackContext;
             setUserIdListener();
         } else if (action.equals(COMMAND_GET_SESSION_ID)) {
-            getSessionIdCallbackContext = callbackContext;
-            getSessionId();
+            sessionIdCallbackContext = callbackContext;
+            setSessionIdListener();
         } else if (action.equals(COMMAND_SET_SHOULD_LAUNCH_DEEPLINK)) {
             shouldLaunchDeeplink = args.getBoolean(0);
         } else {
@@ -65,21 +65,29 @@ public class MetrixCordova extends CordovaPlugin {
         return true;
     }
 
-    private void getSessionNum() {
-        if (getSessionNumCallbackContext != null) {
-            final int sessionNum = ir.metrix.Metrix.getSessionNum();
-            PluginResult pluginResult = new PluginResult(Status.OK, sessionNum);
-            pluginResult.setKeepCallback(true);
-            getSessionNumCallbackContext.sendPluginResult(pluginResult);
+    private void setSessionNumberListener() {
+        if (sessionNumberCallbackContext != null) {
+            ir.metrix.Metrix.setSessionNumberListener(new ir.metrix.session.SessionNumberListener() {
+                @Override
+                public void onSessionNumberChanged(int sessionNum) {
+                    PluginResult pluginResult = new PluginResult(Status.OK, sessionNum);
+                    pluginResult.setKeepCallback(true);
+                    sessionNumberCallbackContext.sendPluginResult(pluginResult);
+                }
+            });
         }
     }
 
-    private void getSessionId() {
-        if (getSessionIdCallbackContext != null) {
-            final String sessionId = ir.metrix.Metrix.getSessionId();
-            PluginResult pluginResult = new PluginResult(Status.OK, sessionId);
-            pluginResult.setKeepCallback(true);
-            getSessionIdCallbackContext.sendPluginResult(pluginResult);
+    private void setSessionIdListener() {
+        if (sessionIdCallbackContext != null) {
+            ir.metrix.Metrix.setSessionIdListener(new ir.metrix.session.SessionIdListener() {
+                @Override
+                public void onSessionIdChanged(String sessionId) {
+                    PluginResult pluginResult = new PluginResult(Status.OK, sessionId);
+                    pluginResult.setKeepCallback(true);
+                    sessionIdCallbackContext.sendPluginResult(pluginResult);
+                }
+            });
         }
     }
  

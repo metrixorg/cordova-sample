@@ -35,31 +35,13 @@ var app = {
             console.log("[MetrixExample]: UserId listener called. ID: " + metrixUserId);
         });
 
-        Metrix.getSessionId(function(metrixSessionId) {
-            console.log("[MetrixExample]: SessionId listener called. ID: " + metrixSessionId);
-        });
-
         var attributes = {};
         attributes['first'] = 'Ken';
         attributes['last'] = 'Adams';
         Metrix.addUserAttributes(attributes);
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        console.log('[MetrixExample]: Received Event: ' + id);
-
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
 
         var btnTrackSimpleEvent = document.getElementById("btnSendEvent");
         var btnTrackFeaturedEvent = document.getElementById("btnSendEventWithAttributes");
-        
-        var btnGetSessionNum = document.getElementById("btnGetSessionNum");
         
         var btnSendSimpleRevenue = document.getElementById("btnSendSimpleRevenue");
         var btnSendFullRevenue = document.getElementById("btnSendFullRevenue");
@@ -79,12 +61,6 @@ var app = {
             Metrix.newEvent("qqwnq", attributes)
         }, false);
 
-        btnGetSessionNum.addEventListener('click',function() { 
-            Metrix.getSessionNum(function(sessionNum) {
-                btnGetSessionNum.innerHTML = "session number: " + sessionNum;
-            });
-        }, false);
-
         btnSendSimpleRevenue.addEventListener('click', function() {
             Metrix.newRevenue('ftlrc', 3200.55);
         }, false);
@@ -92,6 +68,29 @@ var app = {
         btnSendFullRevenue.addEventListener('click', function() {
             Metrix.newRevenue('zpfll', 35500.155, 0, '150');
         }, false);
+
+        var sessionNum = document.getElementById("sessionNum");
+        var sessionId = document.getElementById("sessionId");
+
+        Metrix.setSessionIdListener(function(id) {
+            sessionId.innerHTML = "Session id is: " + id
+        });
+
+        Metrix.setSessionNumberListener(function(num) {
+            sessionNum.innerHTML = "Session number is: " + num
+        });
+    },
+
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        console.log('[MetrixExample]: Received Event: ' + id);
+
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
     }
 };
 

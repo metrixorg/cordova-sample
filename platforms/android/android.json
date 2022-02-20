@@ -42,6 +42,6 @@
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.4",
-    "ir.metrix.cordova": "1.1.4"
+    "ir.metrix.cordova": "1.2.1"
   }
 }
