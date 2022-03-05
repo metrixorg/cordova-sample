@@ -31,10 +31,6 @@ var app = {
             console.log("[MetrixExample]: Deeplink callback received. deeplink: " + deeplink);
         });
 
-        Metrix.setUserIdListener(function(metrixUserId) {
-            console.log("[MetrixExample]: UserId listener called. ID: " + metrixUserId);
-        });
-
         var attributes = {};
         attributes['first'] = 'Ken';
         attributes['last'] = 'Adams';
@@ -78,6 +74,12 @@ var app = {
 
         Metrix.setSessionNumberListener(function(num) {
             sessionNum.innerHTML = "Session number is: " + num
+        });
+
+        var userId = document.getElementById("userId");
+
+        Metrix.setUserIdListener(function(metrixUserId) {
+            userId.innerHTML = "User id is: " + metrixUserId
         });
     },
 
