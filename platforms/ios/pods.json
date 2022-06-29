@@ -1,0 +1,16 @@
+{
+    "declarations": {},
+    "sources": {
+        "https://cdn.cocoapods.org/": {
+            "source": "https://cdn.cocoapods.org/",
+            "count": 1
+        }
+    },
+    "libraries": {
+        "Metrix/cordova": {
+            "name": "Metrix/cordova",
+            "spec": "2.0.3",
+            "count": 1
+        }
+    }
+}

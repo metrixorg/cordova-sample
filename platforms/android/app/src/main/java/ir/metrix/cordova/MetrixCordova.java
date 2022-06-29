@@ -27,7 +27,11 @@ public class MetrixCordova extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals(COMMAND_SET_ATTRIBUTION_CHANGE_LISTENER)) {
+        if (action.equals(COMMAND_INITIALIZE) || 
+                action.equals(COMMAND_SET_STORE) || 
+                action.equals(COMMAND_SET_APP_SECRET) || 
+                action.equals(COMMAND_SET_DEFAULT_TRACKER)) {
+        } else if (action.equals(COMMAND_SET_ATTRIBUTION_CHANGE_LISTENER)) {
             attributionCallbackContext = callbackContext;
             setAttributionListener();
         } else if (action.equals(COMMAND_SET_PUSH_TOKEN)) {

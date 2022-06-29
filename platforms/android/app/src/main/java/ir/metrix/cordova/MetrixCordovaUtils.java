@@ -9,6 +9,12 @@ import org.json.JSONException;
 import ir.metrix.AttributionData;
 
 public class MetrixCordovaUtils {
+    // iOS only
+    public static final String COMMAND_INITIALIZE = "initialize";
+    public static final String COMMAND_SET_STORE = "seStore";
+    public static final String COMMAND_SET_APP_SECRET = "setAppSecret";
+    public static final String COMMAND_SET_DEFAULT_TRACKER = "setDefaultTracker";
+
     public static final String COMMAND_SET_PUSH_TOKEN = "setPushToken";
     public static final String COMMAND_SET_ATTRIBUTION_CHANGE_LISTENER = "setAttributionChangeListener";
     public static final String COMMAND_GET_SESSION_NUMBER = "setSessionNumberListener";

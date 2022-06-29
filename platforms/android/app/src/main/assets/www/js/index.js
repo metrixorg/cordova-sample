@@ -15,6 +15,19 @@ var app = {
     },
 
     initMetrix: function () {
+        // iOS only
+        Metrix.initialize("lcqmfsnvhzznvhe");
+
+        // iOS only
+        Metrix.setStore("App Store");
+
+        // iOS only
+        Metrix.setDefaultTracker("uevt4h");
+
+        // iOS only
+        Metrix.setAppSecret(1, 429751687, 1057026454, 796046595, 610423971);
+
+        var attributionText = document.getElementById("attribution");
         Metrix.setOnAttributionChangedListener(function(attribution) {
             console.log("[MetrixExample]: Attribution callback received.");
             console.log("[MetrixExample]: acquisitionAd = " + attribution.acquisitionAd);
@@ -22,13 +35,7 @@ var app = {
             console.log("[MetrixExample]: acquisitionCampaign = " + attribution.acquisitionCampaign);
             console.log("[MetrixExample]: acquisitionSource = " + attribution.acquisitionSource);
             console.log("[MetrixExample]: attributionStatus = " + attribution.attributionStatus);
-        });
-
-        Metrix.setPushToken("token");
-
-        Metrix.setShouldLaunchDeeplink(true);
-        Metrix.setOnDeeplinkResponseListener(function(deeplink) {
-            console.log("[MetrixExample]: Deeplink callback received. deeplink: " + deeplink);
+            attributionText.innerHTML = "Attribution status is: " + attribution.attributionStatus;
         });
 
         var attributes = {};
@@ -41,7 +48,7 @@ var app = {
         
         var btnSendSimpleRevenue = document.getElementById("btnSendSimpleRevenue");
         var btnSendFullRevenue = document.getElementById("btnSendFullRevenue");
-        
+                
         btnTrackSimpleEvent.addEventListener('click', function() {
             Metrix.newEvent("nkrza")
         }, false);
@@ -62,7 +69,7 @@ var app = {
         }, false);
 
         btnSendFullRevenue.addEventListener('click', function() {
-            Metrix.newRevenue('zpfll', 35500.155, 0, '150');
+            Metrix.newRevenue('zpfll', 35500.155, 1, '150');
         }, false);
 
         var sessionNum = document.getElementById("sessionNum");

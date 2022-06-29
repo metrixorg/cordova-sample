@@ -1,0 +1,11 @@
+framework module Metrix {
+  umbrella header "Metrix.h"
+
+  export *
+  module * { export * }
+}
+
+module Metrix.Swift {
+    header "Metrix-Swift.h"
+    requires objc
+}
