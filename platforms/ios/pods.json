@@ -9,7 +9,7 @@
     "libraries": {
         "Metrix/cordova": {
             "name": "Metrix/cordova",
-            "spec": "2.0.3",
+            "spec": "2.1.0",
             "count": 1
         }
     }

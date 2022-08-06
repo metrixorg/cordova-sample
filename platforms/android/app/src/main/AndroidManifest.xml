@@ -9,17 +9,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="metrix_appId"
-            android:value="zcmwmxbkmuodelu" />
-
-        <meta-data
-            android:name="metrix_trackerToken"
-            android:value="zdqpf2" />
-
-        <meta-data
-            android:name="metrix_storeName"
-            android:value="GooglePlay" />
     </application>
 </manifest>

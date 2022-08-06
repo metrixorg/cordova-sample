@@ -10,6 +10,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     }
   ];
   module.exports.metadata = {
-    "ir.metrix.cordova": "1.5.0"
+    "cordova-plugin-whitelist": "1.3.4",
+    "ir.metrix.cordova": "1.6.0"
   };
 });

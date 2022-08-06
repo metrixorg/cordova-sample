@@ -55,6 +55,9 @@ public class MetrixCordovaUtils {
         if (AttributionData.getAcquisitionSource() != null) {
             map.put("acquisitionSource", AttributionData.getAcquisitionSource());
         }
+        if (AttributionData.getAcquisitionSubId() != null) {
+            map.put("acquisitionSubId", AttributionData.getAcquisitionSubId());
+        }
         if (AttributionData.getAttributionStatus() != null) {
             map.put("attributionStatus", AttributionData.getAttributionStatus().name());
         }
